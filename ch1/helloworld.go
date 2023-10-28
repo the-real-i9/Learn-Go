@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	fmt.Println("My name is kenny")
+	var str, sep string
+	for i := 0; i < len(os.Args); i++ {
+		str += sep + os.Args[i]
+		sep = " "
+	}
+	fmt.Println(str)
 }

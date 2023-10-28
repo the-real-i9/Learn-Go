@@ -1,3 +1,4 @@
+// this is go workspace containing multiple modules
 go 1.21.3
 
 use (
