@@ -1,15 +1,13 @@
 package main
 
+// this is a special type of package.
+// A package different from "main" is a custom package
+// The "main" package is where execution starts, and it must be the only "main" package among all other imported packages
+
 import (
-	"fmt"
-	"os"
+	"learn/helpers" // an imported custom package (module)
 )
 
 func main() {
-	var str, sep string
-	for i := 0; i < len(os.Args); i++ {
-		str += sep + os.Args[i]
-		sep = " "
-	}
-	fmt.Println(str)
+	helpers.Greet("Kenny")
 }
