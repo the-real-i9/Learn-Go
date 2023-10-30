@@ -71,15 +71,31 @@ The "main" function runs in a goroutine and the `go` statement creates additiona
 
 `fmt.Sprint(string)` variations works like `fmt.Print(string)` variations, but rather than print to os.Stdout, it formats accordingly and returns the resulting string.
 
+`fmt.Fprint(w, string)` variations, formats accordingly writes the resulting string to `w io.Writer`
+
+`log` works like `fmt`, but executes some system call after.
 ---
 
-There are two kinds of module/package, one that's a custom package and the other a special "main" package. What you get depends on the package name you declare. 
-- Regardless of your module name, 
-  - if you delare **"package main"**, your module becomes the main package/module, it becomes the entry point of execution, all other packages are imported into it directly or indirectly. But, 
-  - if you declare **"package moduleName"**, it becomes a custom package, that may imported by the main package/module directly or indirectly
+To make a folder into a module/package. In the folder, run this command
+```bash
+go mod init ${parentFolder}/${folder}
+```
+This creates a `go.mod` file in your folder. With the contents:
+```mod
+module ${parentFolder}/${folder}
 
-You can compile the go files in a "main" package/module into one executable.
+go ${versionNumber}
+```
 
-The package name you use must be the one you use in all the go files in a package/module.
+- <u>**Before** your folder becomes a module,</u> all `.go` files in it are independent, in that case, multiple `.go` files can contain `func main()` and can bear any package name (including "main")
+- <u>**After** your folder becomes a module,</u> all go files in it are related, in that case, only one `.go` file can contain `func main()` and all `.go` files must have the same `package ${name}`, where `${name}` can be your `customPackageName` or `main`.
+
+There are **two kinds of module/package**: one that's a custom package and the other a special "main" package. What you get depends on the package name you declare in your `.go` file(s).\
+Regardless of your module name (folder name)
+- if you delare `package main`, your module becomes the main package/module, it becomes the entry point of execution, all other packages are imported into it directly or indirectly. But, 
+- if you declare `package customPackageName`, it becomes a custom package, that may imported by the main package/module directly or indirectly
+
+You can **compile** <u>only a `package main`</u> module/package/folder into one executable. 
+- Custom packages that it dependes on will be compiled internally and dynamically imported.
 
 ---
