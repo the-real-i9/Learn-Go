@@ -22,7 +22,6 @@ func main() {
 	/* -------------------------- */
 
 	start := time.Now()
-	/* The main function creates a channel of strings using make */
 	ch := make(chan string)
 	for _, url := range os.Args[1:] {
 		go fetch(url, ch) // start a goroutine
