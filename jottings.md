@@ -38,3 +38,25 @@ A *short variable declaration* may be <u>used only within a function</u>, not fo
 
 The order of iteration is not specified for a `map` range, it is random, varying from one run to another.
 - The `map` type is not an ordered collection though, since it doesn't use an index.
+
+A channel is a communication mechanism allows one goroutine to pass values of a specified type to another goroutines.
+```go
+// create channel (of "string" type)
+ch := make(chan string)
+
+// pass channel to functiion
+func f(ch chan<- string)
+f(ch)
+
+// send data (of "type") to channel
+ch <- "string" // or an expression that computes to "type"
+
+// receive data from channel
+<-ch // e.g. fmt.Print(<-ch)
+```
+	
+The "main" function runs in a goroutine and the `go` statement creates additional goroutines that runs asynchronously (multiple `go func(...args)` runs concurrently/asynchronously)
+
+When one goroutine attempts a send or receive on a channel, it blocks until another goroutine attempts the corresponding receive or send operation, at which point the value is transferred and both goroutines proceed.
+
+`fmt.Sprint(string)` variations works like `fmt.Print(string)` variations, but rather than print to os.Stdout, it formats accordingly and returns the resulting string.
