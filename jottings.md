@@ -30,7 +30,11 @@ The "initialization" portion of the `for` loop must be a simple statement that i
 
 The *blank identifier* ("`_`") may be used whenever syntax requires a variable name but program logic does not, for instance to discard an unwanted loop index when we require only the element value.
 
+---
+
 A *short variable declaration* may be <u>used only within a function</u>, not for package-level variables.
+
+---
 
 `map[type]type` explained
 - `[type]` specifies the data type of the key
@@ -38,6 +42,8 @@ A *short variable declaration* may be <u>used only within a function</u>, not fo
 
 The order of iteration is not specified for a `map` range, it is random, varying from one run to another.
 - The `map` type is not an ordered collection though, since it doesn't use an index.
+
+---
 
 A channel is a communication mechanism allows one goroutine to pass values of a specified type to another goroutines. The channel either has a <u>bounded capacity buffer</u> or a <u>zero capacity buffer</u>, in which case the channel is unbuffered
 ```go
@@ -56,8 +62,24 @@ ch <- "string" // or an expression that computes to "type"
 <-ch // e.g. fmt.Print(<-ch)
 ```
 
-The "main" function runs in a goroutine and the `go` statement creates additional goroutines that runs asynchronously (multiple `go func(...args)` runs concurrently/asynchronously)
+---
 
-When one goroutine attempts a send or receive on a channel, it blocks until another goroutine attempts the corresponding receive or send operation, at which point the value is transferred and both goroutines proceed.
+The "main" function runs in a goroutine and the `go` statement creates additional goroutines that runs asynchronously (multiple `go func(...args)` runs concurrently)
+- When one goroutine attempts a send or receive on a channel, it blocks until another goroutine attempts the corresponding receive or send operation, at which point the value is transferred and both goroutines proceed.
+
+---
 
 `fmt.Sprint(string)` variations works like `fmt.Print(string)` variations, but rather than print to os.Stdout, it formats accordingly and returns the resulting string.
+
+---
+
+There are two kinds of module/package, one that's a custom package and the other a special "main" package. What you get depends on the package name you declare. 
+- Regardless of your module name, 
+  - if you delare **"package main"**, your module becomes the main package/module, it becomes the entry point of execution, all other packages are imported into it directly or indirectly. But, 
+  - if you declare **"package moduleName"**, it becomes a custom package, that may imported by the main package/module directly or indirectly
+
+You can compile the go files in a "main" package/module into one executable.
+
+The package name you use must be the one you use in all the go files in a package/module.
+
+---

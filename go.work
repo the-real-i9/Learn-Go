@@ -1,7 +1,6 @@
-// this is go workspace containing multiple modules
+// this is go workspace, for when you want to work with multiple modules/packages
 go 1.21.3
 
 use (
-  ./ch1
   ./helpers
 )
