@@ -74,7 +74,8 @@ The "main" function runs in a goroutine and the `go` statement creates additiona
 `fmt.Fprint(w, string)` variations, formats accordingly writes the resulting string to `w io.Writer`
 
 `log` works like `fmt`, but executes some system call after.
----
+
+----
 
 To make a folder into a module/package. In the folder, run this command
 ```bash
@@ -99,3 +100,132 @@ You can **compile** <u>only a `package main`</u> module/package/folder into one 
 - Custom packages that it dependes on will be compiled internally and dynamically imported.
 
 ---
+
+Go allows a simple statement such as a local variable declaration to precede the `if` condition, which is particularly useful for error handling, or basically if condition depends on the statement.
+```go
+// basic if
+if condition {}
+
+// with simple statement
+if statement; condition {}
+// same as puting `statement` before the line
+```
+
+---
+
+**Control flow:** `switch`
+```go
+switch expression {
+case condition:
+  evaluation
+...
+default:
+  evaluation
+}
+```
+Other than `if` and `for`, we have the `switch`.
+
+`expression` is optional, if not included, it's called a *tagless* switch, which defaults to `true`.
+
+`case`s <u>do not fallthrough from one to the next</u> as in C-like languages (where you have to use a `break` statement to go out of the control flow). *(though there is a rarely used `fallthrough` statement that overides this behaviour)*.
+
+The `break` and `continue` statements modify the flow of control, as expected.
+
+---
+
+Before you embark on any new program, it's a good idea to see if packages already exist that might help you get your job done more easily.
+
+---
+## The flag package
+
+`package flag` implements command-line flag parsing.
+
+It uses a program's command-line arguments to set the vaues of certain variables distributed throughout the program.
+
+It allows us define new "flag command-line arguments" and make use of them.
+
+```go
+var sep = flag.String("s", " ", "error message")
+
+flag.Parse()
+
+fmt.Print(strings.join(flag.Args(), *sep))
+```
+> First we define our command-line flags
+```go
+var sep = flag.String("s", " ", "error message")
+/* (flagName, flagDefaultValue, flagErrorMessage) */
+```
+`sep` allows us to use the flag `-s` of the cmd-line in our program as a string.
+
+
+> Next, we parse the command-line arguments to identify the flag and non-flag ones.
+```go
+flag.Parse()
+```
+The flag argruments are the ones we've defined and the non-flag args are the ones we didn't define 
+
+
+> Finally, we then use the flag:
+```go
+fmt.Print(strings.join(flag.Args(), *sep))
+```
+
+`flag.Args()` is the range[] of all "non-flag" args
+- `sep` identifies the flag in our program, while `-s` identifies the flag in the command-line
+  - the value of the flag is what (string) immediately follows `-s`, we use `*sep` to get it in our program, as `sep` holds the address of the variable containg the value.
+  - if the flag isn't specified, its default value is used with the above line of code
+
+When our control encounters this line of code, it replaces `*sep` with the value specified in the cmd-line as the separator
+  - if we specify `-s \`, then "`\`" is the separator
+  - if the flag is not specified the default value of the flag is used.
+
+Both `sep` and `-s` are same, the former helps use it in our program, while the latter helps use it in the command-line
+
+If an undefined flag is used, the error message specified with our flags will throw.
+
+> 😎✨This is a major tool in building command-line applications. For example,\
+> To display help message for your program, you can create a boolean flag that checks if `-h` or `-help` is specified in the command-line arguments, follow by `fmt.Println("Help message")`.
+
+---
+
+# Program Structure
+
+## Pointers
+
+A *pointer* value is the *address* of a variable. A pointer is thus the location at which a value is stored.
+
+With a pointer, <u>we can read or update the value of a variable indirectly</u>.
+
+Each component of a variable of aggregage type (struct field or array element) is also a variable and thus has an address too.
+
+Expressions that denote variables are the only expressions t which the *address-of* operator `&` may be applied.
+
+> Since a pointer to a variable, is itself a variable, that holds the address of another variable. That means <u>a pointer itself a variable and is addressable</u>.
+```go
+var x = 10
+
+var px = &x // pointer to x
+
+var ppx = &px // pointer to the pointer variable of x
+
+&px // address of pointer to x
+
+*&px == &x // true
+*ppx == &x // true
+```
+
+The zero value for a pointer is `nil`
+
+Pointers are comparable; <u>two pointers are equal if and only if they point to the same variable or both are `nil`</u>
+
+It is perfectly safe for a function to return the address of a local variable. The local variable will remain in existence even after the function has returned, and a pointer can refer to it.
+- Comparing the function call with `==` will not equal each other.
+
+Because a pointer contains the address of a variable, passing a pointer argument to a function makes it possible for the function to update the variable that was indirectly passed. *You're passing the actual memory box*.
+
+Pointers are key to the `flag` package, check [The flag package](#the-flag-package) above.
+
+---
+
+## The `new` Function
