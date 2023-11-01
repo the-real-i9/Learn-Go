@@ -229,3 +229,37 @@ Pointers are key to the `flag` package, check [The flag package](#the-flag-packa
 ---
 
 ## The `new` Function
+Use the `new(T)` to create a *pointer to an unnamed variable* of type `T`. This is just a syntactic convenience, such that, you don't have to first declare a dummy unnamed variable before you can then create a pointer to it.
+```go
+// instead of
+var dummy int;
+var p = &dummy
+*p = 2
+
+// you can do
+var p = new(int)
+*p = 2
+```
+
+## Lifetime of Variables
+The lifetime of a package-level variable is the entire execution of the program.
+- You can access a package-level variable before it is declared.
+
+The lifetime of a local variable starts each time its function is invoked, and ends when it becomes *unreachable* (in normal cases, when the function returns).
+- A local variable is not available for access until it is declared.
+
+A compiler may choose to allocate variables on the heap or on the stack.
+  - If you assign a local variable to a package-level pointer variable, the local variable will be allocated on the heap rather than on the stack. This means you *escaped the local variable*, and it's still reachable.
+  - This is good to keep in mind during performance optimization, since each variable that escapes requires an extra memory allocation.
+
+Keeping unnecessary pointers to short-lived objects within long-lived objects, especially global variables, will prevent the garbage collector from reclaiming the short-lived objects.
+
+## Assignments
+Expressions with multiple results must have multiple vaiables declared on the LHS, as many as the results.
+- We can assign unwanted values to the blank identifier ( `-` ).
+
+```go
+f, err = os.Open("foo.txt")
+
+_, err = io.Copy(os.Stdout, req.Body) // discard byte count
+```

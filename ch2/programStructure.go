@@ -1,14 +1,13 @@
 package main
 
 import (
-	"flag"
 	"fmt"
-	"strings"
 )
 
-func main() {
-	/* Pointers */
-
+/* -------- */
+/* Pointers */
+/* -------- */
+func pointers() {
 	var x int = 5 // x is a variable
 
 	/*
@@ -76,3 +75,19 @@ var sep = flag.String("s", " ", "separator") */
 	v := 5
 	return &v
 } */
+
+func main() {
+	fmt.Print(fib(10))
+}
+
+func fib(n int) []int {
+	fibSeq := []int{0, 1}
+	// x, y := 0, 1
+
+	for i := 0; i < n; i++ {
+		// x, y = y, x+y
+		fibSeq = append(fibSeq, fibSeq[len(fibSeq)-2]+fibSeq[len(fibSeq)-1])
+	}
+
+	return fibSeq
+}
