@@ -189,6 +189,7 @@ If an undefined flag is used, the error message specified with our flags will th
 
 ---
 
+
 # Program Structure
 
 ## Pointers
@@ -294,7 +295,18 @@ func (c Celcius) toString() string {
 ```
 
 # Basic Data Types
-A *rune* refers to a *Unicode code point* or *Unicode character*.
+## Booleans
+A value of type `bool`, has only two possible values, `true` and `false`.
+
+Boolean values can be combined with the `&&` (AND) and `||` (OR) operators, which have *short-circuit* behaviour.
+
+---
+## Runes (Unicode UTF-8)
+A *rune* refers to any single *Unicode code point* or *Unicode character literal* 
+- a number, a letter, an emoji, or any single character representation.
+- a unicode escape representing a single character
+
+UTF-8 is the preferred encoding for text strings manipulated by Go programs. 
 
 For runes, a unicode escape represents one character literal. So as, an emoji represents just one character literal.
 ```go
@@ -311,12 +323,14 @@ A rune whose value is less than 256 may be written with a single hexadecimal esc
 
 Go's `range` loop, when applied to a string, performs UTF-8 decoding implicitly.
 
+It is mostly a matter of convention in Go that **text strings are interpreted as UTF-8-encoded sequences of Unicode code points**.
+
 UTF-8 is exceptionally convenient as an interchange format but within a program runes may be more convinient because they are of uniform size and are thus easily indexed in arrays and slices.
-- A `[]rune` conversion/casting applied to a UTF-8 encoded string returns the sequence of Unicode code points that the string encodes
+- A `[]rune` conversion/casting applied to a UTF-8 encoded string <u>returns the sequence of Unicode code points that the string encodes</u>
   ```go
   s := "✨😎🎯🎈"
-  r := []rune(s)
-  fmt.Printf("%x\n", r)
+  r := []rune(s) // ['✨', '😎', '🎯', '🎈']
+  fmt.Printf("%c", r)
   ```
 - If a slice of runes is converted to string, it produces the concatenation of the UTF-8 encodings of each rune:
   ```go
@@ -331,3 +345,63 @@ UTF-8 is exceptionally convenient as an interchange format but within a program 
 ---
 
 Four standard packages are particularly important for manipulating strings: `bytes`, `strings`, `strconv`, `unicode`.
+
+## Contants
+Constants are expressions whose value is known to the compiler and whose **evaluation is guaranteed to occur at compile time**. The underlying type of every constant is a basic type: boolean, string, or number.
+
+A `const` declaration cannot be updated in the program.
+
+As with variables, a sequence of constants can appear in one declaration;
+```go
+const (
+  e = 2.718
+  pi = 3.142
+)
+```
+
+Many computations on constants can be completely evaluated at compile time. Evaluation errors detected at compile time thus be reported.
+
+The results of all arithmetic, logical, and comparison operations applied to constants operands are themselves constants, as are the results of conversions and calls to certain buil-in functions such as `len`, `cap`, `real`, `imag`, `complex`, and `unsafe.Sizeof`.
+
+Constant expressions can be used as the boudary of the array type, since their values are known to the compiler.
+```go
+const b int = 5
+// var b int 5 /* var won't work */
+
+var arr = [b]int{1,2,3,4}
+```
+When a constant expression of a particular type is used in our untyped `const` declaration, our `const` declaration implictly infers this constant expression's type.
+
+When a sequence of constants is declared as a group, the right-hand side expession may be omitted for all but the first of the group, implying that the previous expression and its type should be used again.
+```go
+type Bro int
+const (
+  a Bro = 1
+  b       // b Bro = 1
+  c       // c Bro = 1
+  d = 2
+  e       // e = 2
+)
+```
+
+### The constant generator
+A `const` declaration may use the *constant generator* `iota`, which is used to create a sequence of related values without spelling out each one explicitly. In a const declaration, the value of `iota` begins at zero and increments by one for each item in the sequence.
+
+```go
+const (
+  Sunday = iota // iota is "0"
+  Monday        // "1" automatically generated
+  Tuesday        // "2" automatically generated
+)
+```
+This is a very useful feature, where you want to create different form of sequences with math, where you just have to specify the expression in the first constant with `iota`.
+
+----
+
+# Untyped constant
+Only constants are can be untyped. When an untyped constant is assigned to a variable, or appears on the RHS of a variable declaration with an explicit type, the constant is implicitly converted to the type of that variable if possible.
+
+Coverting a constant from one type to another requires that the target type can represent the original value.
+
+In a variable declaration without an explicit type, the flavor of the untyped constant implicitly determines the default type of the variable.
+- To give the variable a different type, we must explicitly convert the untyped constant to the desired type or state the desired type in the variable declaration.
