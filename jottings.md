@@ -293,3 +293,41 @@ func (c Celcius) toString() string {
 }
 ```
 
+# Basic Data Types
+A *rune* refers to a *Unicode code point* or *Unicode character*.
+
+For runes, a unicode escape represents one character literal. So as, an emoji represents just one character literal.
+```go
+"\u4e16"
+
+"\U0001f60e"
+```
+There are two forms of unicode escapes in Go, `\uhhhh` for a 16-bit value and `\Uhhhhhhhh` for a 32-bit value. The latter is for values that exceeds 16-bit.
+
+A rune whose value is less than 256 may be written with a single hexadecimal escape, such as `'\x41'` for `'A'`, but for higher values, a `\u` or `\U` escape must be used.
+  > ASCII characters be represented in unicode escapes too `'\u0041'` for `'A'`, since they are those that actually begin the unicode character set.
+
+**Legal rune literals** are those that <u>can be represented with a single hexadecimal or unicode escape</u>.
+
+Go's `range` loop, when applied to a string, performs UTF-8 decoding implicitly.
+
+UTF-8 is exceptionally convenient as an interchange format but within a program runes may be more convinient because they are of uniform size and are thus easily indexed in arrays and slices.
+- A `[]rune` conversion/casting applied to a UTF-8 encoded string returns the sequence of Unicode code points that the string encodes
+  ```go
+  s := "✨😎🎯🎈"
+  r := []rune(s)
+  fmt.Printf("%x\n", r)
+  ```
+- If a slice of runes is converted to string, it produces the concatenation of the UTF-8 encodings of each rune:
+  ```go
+  fmt.Println(string(r))
+  ```
+- Converting an interger value to a string interprets the integer as a rune value, and yields the UTF-8 representation of that rune
+  ```go
+  fmt.Println(string(65))        // "A"
+  fmt.Println(string(rune(65)))  // "A"
+  ```
+
+---
+
+Four standard packages are particularly important for manipulating strings: `bytes`, `strings`, `strconv`, `unicode`.
