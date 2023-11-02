@@ -76,7 +76,7 @@ var sep = flag.String("s", " ", "separator") */
 	return &v
 } */
 
-func main() {
+/* func main() {
 	fmt.Print(fib(10))
 }
 
@@ -90,4 +90,60 @@ func fib(n int) []int {
 	}
 
 	return fibSeq
+}
+*/
+
+/* -------- */
+/* Type declarations */
+/* -------- */
+
+/*
+// declare the type
+type Celcius float64
+type Farenheit float64
+
+// declare type methods
+func (c Celcius) toString() string {
+	return fmt.Sprintf("%g^C", c)
+}
+
+func (f Farenheit) toString() string {
+	return fmt.Sprintf("%g^F", f)
+}
+
+// use the type
+const (
+	AbsoluteZeroC Celcius = -273.15
+	FreezingC     Celcius = 0
+	BoilingC      Celcius = 100
+)
+
+func CToF(c Celcius) Farenheit { return Farenheit(c*9/5 + 32) }
+func FToC(f Farenheit) Celcius { return Celcius((f - 32) * 5 / 9) }
+
+func main() {
+	fmt.Println(CToF(BoilingC).toString())
+} */
+
+/* var x int
+
+func init() {
+	x = 5 * 4
+}
+
+func main() {
+	var y = x
+	fmt.Println(y)
+} */
+
+/* Scopes */
+func f() string { return "Hi" }
+
+var g = "g"
+
+func main() {
+	// short declarations shadow (re-declare), outer-scope variables with the same name.
+	f := "f"
+	fmt.Println(f)
+	fmt.Println(g)
 }

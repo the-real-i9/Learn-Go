@@ -263,3 +263,33 @@ f, err = os.Open("foo.txt")
 
 _, err = io.Copy(os.Stdout, req.Body) // discard byte count
 ```
+
+## Assignability
+An assignment, explicit or implicit, is always legal if <u>the LHS (the variable) and the RHS (the value) have the same type</u>.
+
+Whether two values may be compared with `==` and `!=` is related to assignability: <u>in any comparison, the first operand must be assignable to the type of the second operand, or vice versa</u>.
+
+## Type Declarations
+There are variables that share the same representation but signify very different concepts.
+
+A `type` declaration defines a new *named type* that has the same *underlying type* as an existing type.
+```go
+type Celcius float64
+type Farenheit float64
+```
+
+They  don't change the value or representaion in any way, but they make the change of meaning explicit.
+
+A named type may provide notational convinience if it helps avoid writing out complex types over and over again. e.g. *struct*s.
+
+```go
+
+```
+
+Named types also make it possible to define new behaviours for values of the type. These behaviors are expressed as a set of functions associated with the type, called the type's *methods*.
+```go
+func (c Celcius) toString() string {
+  return fmt.Stprintf("%g", c)
+}
+```
+
