@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Printf("%q", pystring.Strip("Hey"))
+	fmt.Printf("%q", pystring.Center("Hey", 10, ' '))
 }
