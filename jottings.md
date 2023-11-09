@@ -136,6 +136,20 @@ The `break` and `continue` statements modify the flow of control, as expected.
 Before you embark on any new program, it's a good idea to see if packages already exist that might help you get your job done more easily.
 
 ---
+
+The Go Language tool in your code editor (VSCode), recognizes **exported declarations**. That is, <u>declarations with first-letter-uppercase names</u>.
+- When you hover over a declaration, you'll see the format `{package}.{DeclarationName}` in blue highlight.
+- For example, an exported constant declaration in the main package, `const PI int = 3.14`, will have `main.PI`.
+- Another example, an exported variable declaration in an exported struct, in the main package, will have `(main.Employee).Firstname`
+  ```go
+  type Employee struct {
+    Firstname, surname
+  }
+  ```
+  
+
+---
+
 ## The flag package
 
 `package flag` implements command-line flag parsing.
