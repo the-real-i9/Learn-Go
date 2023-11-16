@@ -18,15 +18,15 @@ func main() {
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func handler(res http.ResponseWriter, req *http.Request) {
 	mu.Lock()   // acquire lock
 	count++     // modify shared variable
 	mu.Unlock() // release lock
-	fmt.Fprintf(w, "<p>This is a page at %q</p>", r.URL.Path)
+	fmt.Fprintf(res, "<p>This is a page at %q. This is from Kenny</p>\n", req.URL.Path)
 }
 
-func counter(w http.ResponseWriter, r *http.Request) {
+func counter(res http.ResponseWriter, req *http.Request) {
 	mu.Lock()
-	fmt.Fprintf(w, "<p>Count %d</p>", count)
+	fmt.Fprintf(res, "<p>Count %d</p>", count)
 	mu.Unlock()
 }

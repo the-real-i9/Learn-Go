@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 )
 
 /* Array
@@ -83,10 +84,13 @@ var moviesJSONDecoded = []Movie{}
 func main() {
 	// data, _ := json.Marshal(movies)
 	dataIndent, _ := json.MarshalIndent(movies, "", "  ")
-	// fmt.Printf("%s", dataIndent)
+	// fmt.Printf("%s\n", dataIndent)
 
-	fmt.Printf("%v\n", moviesJSONDecoded) // []
+	// fmt.Printf("%v\n", moviesJSONDecoded) // []
 
 	json.Unmarshal(dataIndent, &moviesJSONDecoded)
-	fmt.Printf("%v\n", moviesJSONDecoded)
+	// fmt.Printf("%v\n", moviesJSONDecoded)
+
+	envJson, _ := json.MarshalIndent(os.Environ(), "", "  ")
+	fmt.Printf("%s\n", envJson)
 }
