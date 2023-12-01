@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	// "golang.org/x/net/html"
+)
 
 // You can use this recursion to mimic prototypal inheritance like in JavaScript
 type Person struct {
@@ -26,6 +29,42 @@ type Parent struct {
 
 var p1 = Person{name: "Kenny", age: 23, sibling: &Sibling{Person: Person{name: "Amos", age: 26, sibling: &Sibling{Person: Person{name: "Tosin", age: 28}, role: "Elder sister"}}, role: "Elder brother"}}
 
-func main() {
+func main1() {
 	fmt.Println(p1.sibling)
+}
+
+/* ------------- */
+
+type Node struct {
+	Type                    NodeType
+	Data                    string
+	Attr                    []Attribute
+	FirstChild, NextSibling *Node
+}
+
+type NodeType int32
+
+type Attribute struct {
+	Key, Val string
+}
+
+const (
+	ErrorNode NodeType = iota
+	TextNode
+	DocumentNode
+	ElementNode
+	CommentNode
+	DoctypeNode
+)
+
+func visit(links []string /* n *html.Node */) []string {
+	// check if this node is a accessible html tag with an hyperlink e.g. a, img, audio, video etc. If so extract its link attribute (href or source) and add it to the links slice.
+	// check if this node has a valid sibling, if yes, call this function on this node again, passing it our links slice.
+	// This function recursively visits nested nodes to grab all the links it finds.
+
+	return []string{""}
+}
+
+func main() {
+
 }
