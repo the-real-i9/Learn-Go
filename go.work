@@ -1,7 +1,7 @@
 // this is go workspace, for when you want to work with multiple modules/packages
-go 1.21.3
+go 1.21.5
 
 use (
-  ./helpers
-  ./python-types/pystring
+	./helpers
+	./python-types/pystring
 )
