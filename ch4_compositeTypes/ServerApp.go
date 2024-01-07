@@ -11,7 +11,7 @@ import (
 
 var mutex sync.Mutex
 
-func main() {
+func ServerApp() {
 	http.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
 		mutex.Lock()
 		type Response struct {

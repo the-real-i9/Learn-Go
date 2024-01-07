@@ -2,6 +2,11 @@
 go 1.21.5
 
 use (
-	./helpers
-	./python-types/pystring
+./z_my_extras/dataStructures
+./z_my_extras/designPatterns
+./ch1_tutorial
+./ch2_programStructure
+./ch3_basicDataTypes
+./ch4_compositeTypes
+./ch5_functions
 )

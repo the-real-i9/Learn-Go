@@ -53,15 +53,3 @@ func (list *LinkedList) Traverse() {
 		fmt.Println(node.Data)
 	}
 }
-
-func main() {
-	list := &LinkedList{}
-	list.Append(4).Append(5).Append(6).Append(7).Prepend(3)
-
-	// val, _ := json.Marshal(list)
-	// fmt.Printf("%s\n", val)
-
-	fmt.Println(list.ToSlice())
-
-	// list.Traverse()
-}

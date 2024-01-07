@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 /* func main1() {
@@ -26,7 +27,13 @@ const (
 var symbol = [...]string{USD: "USD", EUR: "EUR"}
 
 func main() {
-	runes := []rune("Hello ₶₹₰₫₦")
+	result, err := SearchGithubIssues([]string{"repo:golang/go", "is:open", "json", "decoder"})
 
-	fmt.Printf("%q ", runes)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%d issues:\n", result.TotalCount)
+	for _, item := range result.Items {
+		fmt.Printf("#%-5d %9.9s %.55s\n", item.Number, item.User.Login, item.Title)
+	}
 }

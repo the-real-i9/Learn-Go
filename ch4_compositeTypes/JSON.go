@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -30,7 +29,7 @@ var movies = []Movie{{Title: "Casablanca", Year: 1942, TimesWatched: 0, Actors: 
 // var moviesJSONDecoded []Movie
 var moviesJSONDecoded = []Movie{}
 
-func main1() {
+func JSON() {
 	// data, _ := json.Marshal(movies)
 	dataIndent, _ := json.MarshalIndent(movies, "", "  ")
 	// fmt.Printf("%s\n", dataIndent)
@@ -68,7 +67,7 @@ type User struct {
 	HTMLURL string `json:"html_url"`
 }
 
-func searchGithubIssues(terms []string) (*IssuesSearchResult, error) {
+func SearchGithubIssues(terms []string) (*IssuesSearchResult, error) {
 	q := url.QueryEscape(strings.Join(terms, " "))
 
 	resp, err := http.Get(IssuesURL + "?q=" + q)
@@ -91,16 +90,4 @@ func searchGithubIssues(terms []string) (*IssuesSearchResult, error) {
 
 	resp.Body.Close()
 	return &result, nil
-}
-
-func main() {
-	result, err := searchGithubIssues([]string{"repo:golang/go", "is:open", "json", "decoder"})
-
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("%d issues:\n", result.TotalCount)
-	for _, item := range result.Items {
-		fmt.Printf("#%-5d %9.9s %.55s\n", item.Number, item.User.Login, item.Title)
-	}
 }

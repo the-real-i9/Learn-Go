@@ -12,7 +12,7 @@ type Manager struct {
 	Role  string
 }
 
-func main() {
+func Struct() {
 	// var Person1 Staff = Staff{ID: "fkjk3j4", Firstname: "Kehinde", surname: "Ogunrinola"}
 
 	// var Person2 Staff = Staff{"maelj2l", "Samuel", "Oluwarinola"}

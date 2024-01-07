@@ -8,11 +8,11 @@ import (
 	"time"
 )
 
-func main() {
+func ConcUrlFetch() {
 	start := time.Now()
 	ch := make(chan string)
 	for _, url := range os.Args[1:] {
-		go fetch(url, ch) // start a goroutine
+		go Fetch(url, ch) // start a goroutine
 
 		/*
 			- For each url, the `go` statement in this loop starts a new goroutine that calls `fetch` asynchronoushly.
@@ -37,7 +37,7 @@ func main() {
 
 }
 
-func fetch(url string, ch chan<- string) {
+func Fetch(url string, ch chan<- string) {
 	/* When each goroutine (fetch) attempts a send on channel `ch`, it blocks, until ... (continued in `func main`)*/
 
 	start := time.Now()
