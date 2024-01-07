@@ -1,3 +1,3 @@
-module learngo/ch4_compositeTypes
+module learngo/compositeTypes
 
 go 1.21.5

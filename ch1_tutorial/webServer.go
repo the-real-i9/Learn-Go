@@ -10,7 +10,7 @@ import (
 var mu sync.Mutex // a mutex lock for synchronization
 var count int     // a shared variable
 
-func webServer() {
+func WebServer() {
 	http.HandleFunc("/", handler) // handle GET calls to "/"
 	http.HandleFunc("/count", counter)
 
