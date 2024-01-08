@@ -78,7 +78,7 @@ func SearchGithubIssues(terms []string) (*IssuesSearchResult, error) {
 
 	if resp.StatusCode != http.StatusOK {
 		resp.Body.Close()
-		return nil, fmt.Errorf("Search query failed: %s", resp.Status)
+		return nil, fmt.Errorf("search query failed: %s", resp.Status)
 	}
 
 	var result IssuesSearchResult

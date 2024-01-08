@@ -1,5 +1,12 @@
 package main
 
+import (
+	"fmt"
+	"strings"
+
+	"golang.org/x/net/html"
+)
+
 // You can use this recursion to mimic prototypal inheritance like in JavaScript
 type Person struct {
 	name string
@@ -22,14 +29,58 @@ type Parent struct {
 	Role string
 }
 
-var P1 = Person{name: "Kenny", age: 23, Sibling: &Sibling{Person: Person{name: "Amos", age: 26, Sibling: &Sibling{Person: Person{name: "Tosin", age: 28}, Role: "Elder sister"}}, Role: "Elder brother"}}
+var Person_1 = Person{
+	name: "Kenny",
+	age:  23,
+	Sibling: &Sibling{
+		Person: Person{
+			name: "Amos",
+			age:  26,
+			Sibling: &Sibling{
+				Person: Person{
+					name: "Tosin",
+					age:  28,
+				},
+				Role: "Elder sister",
+			},
+		},
+		Role: "Elder brother",
+	},
+}
 
 /* ------------- */
+func visit(links []string, n *html.Node) []string {
+	if n.Type == html.ElementNode && n.Data == "a" {
+		for _, a := range n.Attr {
+			if a.Key == "href" && strings.HasPrefix(a.Val, "https://") {
+				links = append(links, a.Val)
+			}
+		}
+	}
 
-func Visit(links []string /* , n *html.Node */) []string {
-	// check if this node is a accessible html tag with an hyperlink e.g. a, img, audio, video etc. If so extract its link attribute (href or source) and add it to the links slice.
-	// check if this node has a valid Sibling, if yes, call this function on this node again, passing it our links slice.
-	// This function recursively visits nested nodes to grab all the links it finds.
+	/* for c := n.FirstChild; c != nil; c = c.NextSibling {
+	links = visit(links, c)
+	} */
+	c := n.FirstChild
+	if c != nil {
+		links = visit(links, c)
+	}
 
-	return []string{""}
+	next := n.NextSibling
+	if next != nil {
+		links = visit(links, next)
+	}
+
+	return links
+}
+
+func outline(stack []string, n *html.Node) {
+	if n.Type == html.ElementNode {
+		stack = append(stack, n.Data)
+		fmt.Println(stack)
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		outline(stack, c)
+	}
 }

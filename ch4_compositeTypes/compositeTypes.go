@@ -24,7 +24,7 @@ const (
 	RMB
 )
 
-var symbol = [...]string{USD: "USD", EUR: "EUR"}
+var Symbol = [...]string{USD: "USD", EUR: "EUR"}
 
 func main() {
 	result, err := SearchGithubIssues([]string{"repo:golang/go", "is:open", "json", "decoder"})
