@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"os"
+	"slices"
 	"strings"
 
 	"golang.org/x/net/html"
@@ -50,10 +53,10 @@ var Person_1 = Person{
 
 /* ------------- */
 func visit(links []string, n *html.Node) []string {
-	if n.Type == html.ElementNode && n.Data == "a" {
-		for _, a := range n.Attr {
-			if a.Key == "href" && strings.HasPrefix(a.Val, "https://") {
-				links = append(links, a.Val)
+	if n.Type == html.ElementNode && slices.Contains([]string{"a", "img", "script", "link", "video", "audiio"}, n.Data) {
+		for _, attr := range n.Attr {
+			if slices.Contains([]string{"href", "src"}, attr.Key) && strings.HasPrefix(attr.Val, "https:") {
+				links = append(links, fmt.Sprintf("%v --- %v", n.Data, attr.Val))
 			}
 		}
 	}
@@ -82,5 +85,51 @@ func outline(stack []string, n *html.Node) {
 
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		outline(stack, c)
+	}
+}
+
+func findlinks1(webPage io.Reader) {
+	doc, err := html.Parse(webPage)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "findlinks1: %v\n", err)
+		os.Exit(1)
+	}
+
+	for _, link := range visit(nil, doc) {
+		fmt.Println(link)
+	}
+}
+
+func findtags(webPage io.Reader) {
+	doc, err := html.Parse(webPage)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "findtags1: %v\n", err)
+		os.Exit(1)
+	}
+
+	outline(nil, doc)
+}
+
+func trackTags(elCounts map[string]int, n *html.Node) map[string]int {
+	if n.Type == html.ElementNode {
+		elCounts[n.Data]++
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		elCounts = trackTags(elCounts, c)
+	}
+
+	return elCounts
+}
+
+func countElements(webPage io.Reader) {
+	doc, err := html.Parse(webPage)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "countElements: %v\n", err)
+		os.Exit(1)
+	}
+
+	for k, v := range trackTags(map[string]int{}, doc) {
+		fmt.Printf("Tag: %v --- Count: %v\n", k, v)
 	}
 }

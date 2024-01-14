@@ -10,6 +10,8 @@ import (
 	"time"
 )
 
+// To create a JSON type, we first create an underlying named struct with "Capitalized field names"
+// The json: prefixes in backticks represents control over the field, starting from the preferred key name. They are called "field tags".
 type Movie struct {
 	Title  string
 	Year   int  `json:"released"`        // "released" as key
@@ -17,8 +19,8 @@ type Movie struct {
 	Actors []string
 	// the left-trailing comma is so as not to make the compiler think we want "omitempty" as key
 	TimesWatched int    `json:",omitempty"` // struct Field as key, omit if empty
-	DevComment   string `json:"-"`          // omit
-	// they right-trailing comma is so as not to make the compiler thing we want to omit
+	DevComment   string `json:"-"`          // omit Field
+	// they right-trailing comma is so as not to make the compiler think we want to omit
 	HyphenKey bool `json:"-,"` // you want "-" as key
 }
 
@@ -30,14 +32,16 @@ var movies = []Movie{{Title: "Casablanca", Year: 1942, TimesWatched: 0, Actors: 
 var moviesJSONDecoded = []Movie{}
 
 func JSON() {
+	// converting a struct to json is called Marshaling
 	// data, _ := json.Marshal(movies)
 	dataIndent, _ := json.MarshalIndent(movies, "", "  ")
-	// fmt.Printf("%s\n", dataIndent)
+	fmt.Printf("%s\n", dataIndent)
 
-	// fmt.Printf("%v\n", moviesJSONDecoded) // []
+	fmt.Printf("%v\n", moviesJSONDecoded) // []
 
+	// converting a JSON back to its underlying struct is called Unmarshaling
 	json.Unmarshal(dataIndent, &moviesJSONDecoded)
-	// fmt.Printf("%v\n", moviesJSONDecoded)
+	fmt.Printf("%v\n", moviesJSONDecoded)
 
 	envJson, _ := json.MarshalIndent(os.Environ(), "", "  ")
 	fmt.Printf("%s\n", envJson)
