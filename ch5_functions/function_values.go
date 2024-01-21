@@ -10,14 +10,25 @@ import (
 // functions values are represented by the function type followed by the function body
 
 // what's before the open curly brace is technically a complete function type
-func square(n int) int  { return n * n }
-func doSomething(n int) { /* doing something */ }
+func square(n int) int {
+	return n * n
+}
+func doSomething(n int) {
+	/* doing something */
+}
 
-// the name preceding the parenthenses is technically the name of the variable the function is being assigned to
+// the name preceding the parenthenses is technically the name of the variable the function is being assigned to, for a function declaration
 
 // consider an explicit function value assignment to a variable
-var negative = func(n int) int { return -n }                         // implicit typing
-var product func(m, n int) int = func(m, n int) int { return m * n } // explicit typing
+// implicit typing
+var negative = func(n int) int {
+	return -n
+}
+
+// explicit typing
+var product func(m, n int) int = func(m, n int) int {
+	return m * n
+}
 
 // Uninitialized function i.e. a function with no value/
 // The zero value of a function type is nil. They can be compared with nil. But they are not comparable

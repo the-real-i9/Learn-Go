@@ -38,6 +38,9 @@ func maps() {
 	// A map type is enumerable
 	for key, value := range ages {
 		fmt.Printf("%v's age is %v\n", key, value)
+		// NOTE that: the fields of a map are randomly ordered in memory at runtime
+		// So if you want an ordered iteration, make sure to
+		// sort the keys first and iterate it by accessing with the ordered keys
 	}
 
 	// Go does not provide a `set` type, but since the keys of a map are distinct, a map can serve this purpose.

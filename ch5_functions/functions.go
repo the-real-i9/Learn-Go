@@ -26,5 +26,6 @@ func main() {
 	// findlinks1(webPage)
 	// findtags(webPage)
 	// countElements(webPage)
-	funcVals()
+	// funcVals()
+	anonymFuncs()
 }
