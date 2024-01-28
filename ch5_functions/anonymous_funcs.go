@@ -45,34 +45,21 @@ func sortedMapKeys(m map[string][]string) []string {
 func topoSort(m map[string][]string) []string {
 	finalResultArray := []string{}
 
-	var iterator func(key string)
+	var visitAll func(items []string)
 
 	seen := map[string]bool{}
 
-	iterator = func(key string) {
-		for _, item := range m[key] {
-			if _, ok := m[item]; !ok {
-				if !seen[item] {
-					finalResultArray = append(finalResultArray, item)
-					seen[item] = true
-				}
-			} else {
-				iterator(item)
-				if !seen[item] {
-					finalResultArray = append(finalResultArray, item)
-					seen[item] = true
-				}
+	visitAll = func(items []string) {
+		for _, item := range items {
+			if !seen[item] {
+				seen[item] = true
+				visitAll(m[item])
+				finalResultArray = append(finalResultArray, item)
 			}
 		}
 	}
 
-	for _, key := range sortedMapKeys(m) {
-		iterator(key)
-		if !seen[key] {
-			finalResultArray = append(finalResultArray, key)
-			seen[key] = true
-		}
-	}
+	visitAll(sortedMapKeys(m))
 
 	return finalResultArray
 }
@@ -106,3 +93,11 @@ func anonymFuncs() {
 		fmt.Println(course)
 	}
 }
+
+/* NOTES */
+
+/* WARNING!!! Anonymous functions created in an iteration generally does capture the loop's iteration variable -
+its address, to be precise - therefore, the function's operations on this iteration variable are performed
+on the same variable (address) during each iteration. To avoid this behaviour, declare a new variable
+in each iteration and assign and copy the iteration variable into it via assignment.
+*/

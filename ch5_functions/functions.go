@@ -27,5 +27,6 @@ func main() {
 	// findtags(webPage)
 	// countElements(webPage)
 	// funcVals()
-	anonymFuncs()
+	// anonymFuncs()
+	variadicFuncs()
 }
