@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"net/http"
 	"os"
 	"slices"
 	"strings"
@@ -52,6 +53,16 @@ var Person_1 = Person{
 }
 
 /* ------------- */
+func getWebPage(url string) (io.Reader, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, fmt.Errorf("%v %v", url, err)
+	}
+
+	// defer resp.Body.Close()
+	return resp.Body, nil
+}
+
 func visit(links []string, n *html.Node) []string {
 	if n.Type == html.ElementNode && slices.Contains([]string{"a", "img", "script", "link", "video", "audiio"}, n.Data) {
 		for _, attr := range n.Attr {

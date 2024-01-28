@@ -64,6 +64,33 @@ func topoSort(m map[string][]string) []string {
 	return finalResultArray
 }
 
+/* Valid topological orderings, although not deterministic, as it isn't sorte */
+func topoSort2(m map[string][]string) []string {
+	seen := map[string]bool{}
+
+	order := []string{}
+
+	var visit func(ctops map[string][]string)
+
+	visit = func(ctops map[string][]string) {
+		for c, ps := range ctops {
+			c, ps := c, ps
+			if !seen[c] {
+				seen[c] = true
+				for _, item := range ps {
+					item := item
+					visit(map[string][]string{item: m[item]})
+				}
+				order = append(order, c)
+			}
+		}
+	}
+
+	visit(m)
+
+	return order
+}
+
 var prereqs = map[string][]string{
 	"algorithms": {"data structures"},
 	"calculus":   {"linear algebra"},
@@ -89,7 +116,7 @@ func anonymFuncs() {
 	fmt.Println(f())
 	fmt.Println(f()) */
 
-	for _, course := range topoSort(prereqs) {
+	for _, course := range topoSort2(prereqs) {
 		fmt.Println(course)
 	}
 }
