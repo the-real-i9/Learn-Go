@@ -13,5 +13,6 @@ func main() {
 	// funcVals()
 	// anonymFuncs()
 	// variadicFuncs()
-	defFuncCalls()
+	// defFuncCalls()
+	panicRecv()
 }
