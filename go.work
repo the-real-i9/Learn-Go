@@ -9,4 +9,6 @@ use (
 ./ch3_basicDataTypes
 ./ch4_compositeTypes
 ./ch5_functions
+./ch6_methods
+./ch7_interfaces
 )
