@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	methDecl()
-	structEmb()
+	// methDecl()
+	// structEmb()
 	methValsExp()
 }

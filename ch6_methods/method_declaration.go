@@ -17,6 +17,9 @@ func (p *Point) ScaleBy(factor float64) {
 	p.Y *= factor
 }
 
+func (p Point) Add(q Point) Point { return Point{p.X + q.X, p.Y + q.Y} }
+func (p Point) Sub(q Point) Point { return Point{p.X - q.X, p.Y - q.Y} }
+
 type IntList struct {
 	Value int
 	Tail  *IntList
