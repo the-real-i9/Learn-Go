@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// named "struct" type
 type Staff struct {
 	ID                 string
 	Firstname, surname string /* Exported, unexported */
@@ -64,3 +65,19 @@ func structReturnReadOnly(staff Staff, newSurname string) Staff {
 	staff.surname = newSurname
 	return staff
 }
+
+// unnamed "struct" type
+// cannot have methods, unlike named types
+// this  is just like declaring a mere (unnamed) varable of any type
+var student struct {
+	name  string
+	class string
+} = struct {
+	name  string
+	class string
+}{"taye", "B"}
+
+var teacher = struct {
+	name  string
+	class string
+}{"taye", "B"}
