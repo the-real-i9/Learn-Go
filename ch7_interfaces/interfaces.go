@@ -2,5 +2,6 @@ package main
 
 func main() {
 	// intfAsCont()
-	intfTypes()
+	// intfTypes()
+	intfSatsf()
 }
