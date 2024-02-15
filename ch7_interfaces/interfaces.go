@@ -5,5 +5,6 @@ func main() {
 	// intfTypes()
 	// intfSatsf()
 	// parFlag()
-	intfValues()
+	// intfValues()
+	sortInterface()
 }
