@@ -4,5 +4,6 @@ func main() {
 	// intfAsCont()
 	// intfTypes()
 	// intfSatsf()
-	parFlag()
+	// parFlag()
+	intfValues()
 }

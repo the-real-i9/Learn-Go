@@ -8,7 +8,7 @@ import (
 type Celcius float64
 
 func (c Celcius) String() string {
-	return fmt.Sprintf("%gdegC", c)
+	return fmt.Sprintf("%.1fdegC", c)
 }
 
 type Farenheit float64
