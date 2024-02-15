@@ -6,5 +6,6 @@ func main() {
 	// intfSatsf()
 	// parFlag()
 	// intfValues()
-	sortInterface()
+	// sortInterface()
+	httpHandIntf()
 }
