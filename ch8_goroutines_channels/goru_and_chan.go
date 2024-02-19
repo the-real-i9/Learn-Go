@@ -4,5 +4,10 @@ func main() {
 	// goRoutines()
 	// concClockServer()
 	// concEchoServer()
-	channels()
+	// channels()
+	// unbuffChannels()
+	// pipelines()
+	// unidirectionalChan()
+	// buffChan()
+	multiplexSelect()
 }
