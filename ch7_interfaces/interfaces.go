@@ -8,5 +8,5 @@ func main() {
 	// intfValues()
 	// sortInterface()
 	// httpHandIntf()
-	typeAssert()
+	// typeAssert()
 }

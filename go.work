@@ -1,14 +1,15 @@
 // this is go workspace, for when you want to work with multiple modules/packages
-go 1.21.5
+go 1.22.0
 
 use (
-./z_my_extras/dataStructures
-./z_my_extras/designPatterns
-./ch1_tutorial
-./ch2_programStructure
-./ch3_basicDataTypes
-./ch4_compositeTypes
-./ch5_functions
-./ch6_methods
-./ch7_interfaces
+	./ch1_tutorial
+	./ch2_programStructure
+	./ch3_basicDataTypes
+	./ch4_compositeTypes
+	./ch5_functions
+	./ch6_methods
+	./ch7_interfaces
+	./ch8_goroutines_channels
+	./z_my_extras/dataStructures
+	./z_my_extras/designPatterns
 )
