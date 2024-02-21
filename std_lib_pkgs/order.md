@@ -1,0 +1,113 @@
+# Learning Order
+- builtin
+- strings
+- bytes
+- strconv
+- regexp
+- index
+- slices
+- maps
+- cmp
+- sort
+- time
+- container
+  - list
+  - ring
+  - heap
+- errors
+- testing
+- embed
+- math (when needed)
+  - rand
+  - bits
+---
+- fmt
+- log
+- flag
+- path
+- io
+- os
+- syscall (adv.)
+- sync (adv.)
+- runtime (adv.)
+---
+- net
+  - http
+    - httptest
+    - cookiejar
+    - httputil
+    - cgi
+    - fastcgi
+    - httptrace
+    - pprof
+  - url
+  - smtp
+  - mail
+  - textproto
+  - rpc
+    - jsonrpc
+  - netip
+- mime
+- database
+- html
+- context
+- expvar (adv.)
+---
+- bufio
+- text
+  - scanner
+  - tabwriter
+  - template
+    - parse
+- encoding
+  - json
+  - csv
+  - xml
+  - pem
+  ---
+  - ascii85
+  - hex
+  - base64
+  - base32
+  - binary
+  - asn1
+  ---
+  - gob
+- unicode
+- image
+---
+- archive
+  - zip
+  - tar
+- compress
+  - gzip
+  - zlib
+  - flate
+  - lzw
+  - bzip2
+---
+- crypto
+  - rand
+  - cipher
+  ---
+  - hmac
+  - rsa
+  - sha256
+  - sha512
+  - rc4
+  - subtle
+  ---
+  - tls
+  - x509
+  - dsa
+  - ecdsa
+  - des
+- hash
+  - adler32
+  - crc32
+  - crc64
+---
+- debug
+- plugin
+- reflect
+- unsafe
