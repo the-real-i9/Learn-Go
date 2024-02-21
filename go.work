@@ -2,6 +2,8 @@
 go 1.22.0
 
 use (
+	./z_my_extras/dataStructures
+	./z_my_extras/designPatterns
 	./ch1_tutorial
 	./ch2_programStructure
 	./ch3_basicDataTypes
@@ -10,6 +12,5 @@ use (
 	./ch6_methods
 	./ch7_interfaces
 	./ch8_goroutines_channels
-	./z_my_extras/dataStructures
-	./z_my_extras/designPatterns
+	./std_lib_pkgs
 )
