@@ -2,12 +2,11 @@ package main
 
 func main() {
 	// goRoutines()
-	// concClockServer()
-	// concEchoServer()
+	examples()
 	// channels()
 	// unbuffChannels()
 	// pipelines()
 	// unidirectionalChan()
 	// buffChan()
-	multiplexSelect()
+	// multiplexSelect()
 }
