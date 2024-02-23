@@ -1,6 +1,6 @@
 # Learning Order
-- builtin
-- strings
+- builtin ✅
+- strings ✅
 - bytes
 - strconv
 - regexp
