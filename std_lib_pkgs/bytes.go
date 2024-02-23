@@ -10,6 +10,9 @@ import (
 /*
 "bytes" functions (on byte slices) are analogous to "strings" functions
 "bytes" `type Reader` are analogoues to "strings" `type Reader` also
+
+You should be able to handle the `type Reader` as you've
+already dealt with analogous reader functions from `type Buffer`
 */
 
 func bytes_pkg() {

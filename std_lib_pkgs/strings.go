@@ -64,6 +64,14 @@ func strings_pkg() {
 
 	/* ==== Types === */
 	// strings.Builder -- for building strings
+	// The methods of `Builder` are familiar
+
 	// strings.Replacer -- for mutating strings
-	// strings.Reader -- a string Reader object
+	/* rplc := strings.NewReplacer("s", "n")
+	fmt.Println(rplc.Replace("basasa"))     // "banana"
+	rplc.WriteString(os.Stdout, "basasa\n") // prints "banana" */
+
+	// strings.Reader -- a string Reader
+	// The methods of `Reader` are familiar
+
 }
