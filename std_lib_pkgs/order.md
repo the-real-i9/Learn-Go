@@ -1,7 +1,7 @@
 # Learning Order
 - builtin ✅
 - strings ✅
-- bytes
+- bytes ✅
 - strconv
 - regexp
 - index

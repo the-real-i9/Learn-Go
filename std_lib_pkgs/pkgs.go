@@ -5,5 +5,6 @@ package main
 func main() {
 	// builtins()
 	// strings_pkg()
-	bytes_pkg()
+	// bytes_pkg()
+	strconv_pkg()
 }
