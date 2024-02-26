@@ -6,5 +6,7 @@ func main() {
 	// builtins()
 	// strings_pkg()
 	// bytes_pkg()
-	strconv_pkg()
+	// strconv_pkg()
+	regexp_pkg()
+	// index_pkg()
 }

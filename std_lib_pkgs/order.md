@@ -3,7 +3,7 @@
 - strings ✅
 - bytes ✅
 - strconv ✅
-- regexp
+- regexp ✅
 - index
 - slices
 - maps
