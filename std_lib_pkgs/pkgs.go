@@ -7,6 +7,6 @@ func main() {
 	// strings_pkg()
 	// bytes_pkg()
 	// strconv_pkg()
-	regexp_pkg()
-	// index_pkg()
+	// regexp_pkg()
+	index_pkg()
 }

@@ -59,6 +59,8 @@ func finders() {
 
 		Basically, Find[All | First][string | []byte]Match[with Submatch][Index | Value]
 		- So all methods that don't include "String" uses T<[]byte>, else T<string> as arg/res
+
+		The index is an integer pair in []int, which actually defines the lower and upper boundaries of a slice operation, able to extract the substring from the original string
 	*/
 
 	first_finders := func() {
