@@ -13,7 +13,7 @@ func strconv_pkg() {
 	// parsers()
 	// quoters()
 	appenders()
-	// others()
+	// strconv_others()
 }
 
 func formatters() {
@@ -75,7 +75,7 @@ func appenders() {
 	fmt.Println(string(love))
 }
 
-func others() {
+func strconv_others() {
 	// common
 	fmt.Println(strconv.Atoi("56543"))
 	fmt.Println(strconv.Itoa(56543))

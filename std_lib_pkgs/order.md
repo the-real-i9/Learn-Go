@@ -2,7 +2,7 @@
 - builtin ✅
 - strings ✅
 - bytes ✅
-- strconv
+- strconv ✅
 - regexp
 - index
 - slices
@@ -23,12 +23,12 @@
 ---
 - fmt
 - log
-- flag
 - path
 - io
 - os
-- syscall (adv.)
+- flag
 - sync (adv.)
+- syscall (adv.)
 - runtime (adv.)
 ---
 - net
