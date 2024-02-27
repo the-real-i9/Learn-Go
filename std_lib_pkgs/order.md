@@ -4,11 +4,12 @@
 - bytes ✅
 - strconv ✅
 - regexp ✅
-- index
-- slices
+- index ✅
+- slices ✅
 - maps
-- cmp
-- sort
+- cmp ✅ 
+    > the only resourceful function is the comparison function `Compare`, and its just for equality test (`== (0)`, `< (-1)`, `> (1)`) between two **comparable types**. It only saves one the stress of writing conditional statements.
+- sort ✅ *(all sorts are already implemented in "slices")*
 - time
 - container
   - list

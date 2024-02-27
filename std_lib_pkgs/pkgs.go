@@ -8,5 +8,6 @@ func main() {
 	// bytes_pkg()
 	// strconv_pkg()
 	// regexp_pkg()
-	index_pkg()
+	// index_pkg()
+	slices_pkg()
 }
