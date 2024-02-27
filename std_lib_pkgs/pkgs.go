@@ -9,5 +9,5 @@ func main() {
 	// strconv_pkg()
 	// regexp_pkg()
 	// index_pkg()
-	slices_pkg()
+	// slices_pkg()
 }

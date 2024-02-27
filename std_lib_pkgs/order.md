@@ -10,7 +10,7 @@
 - cmp ✅ 
     > the only resourceful function is the comparison function `Compare`, and its just for equality test (`== (0)`, `< (-1)`, `> (1)`) between two **comparable types**. It only saves one the stress of writing conditional statements.
 - sort ✅ *(all sorts are already implemented in "slices")*
-- time
+- time ✅
 - container
   - list
   - ring
@@ -31,6 +31,29 @@
 - sync (adv.)
 - syscall (adv.)
 - runtime (adv.)
+---
+- encoding
+  - json
+  - csv
+  - xml
+  - pem
+  ---
+  - ascii85
+  - hex
+  - base64
+  - base32
+  - binary
+  - asn1
+  ---
+  - gob
+- bufio
+- unicode
+- text
+  - scanner
+  - tabwriter
+  - template
+    - parse
+- image
 ---
 - net
   - http
@@ -53,29 +76,6 @@
 - html
 - context
 - expvar (adv.)
----
-- bufio
-- text
-  - scanner
-  - tabwriter
-  - template
-    - parse
-- encoding
-  - json
-  - csv
-  - xml
-  - pem
-  ---
-  - ascii85
-  - hex
-  - base64
-  - base32
-  - binary
-  - asn1
-  ---
-  - gob
-- unicode
-- image
 ---
 - archive
   - zip
