@@ -10,4 +10,5 @@ func main() {
 	// regexp_pkg()
 	// index_pkg()
 	// slices_pkg()
+	fmt_pkg()
 }
