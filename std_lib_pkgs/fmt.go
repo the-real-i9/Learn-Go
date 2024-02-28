@@ -6,8 +6,12 @@ import (
 )
 
 func fmt_pkg() {
-	printers()
+	// printers()
 	// scanners()
+	fmt_appenders()
+
+	/* Additional information */
+	// The fmt package has a "Stringer" and a "GoStringer" that helps you define a custom way for converting a your custom type into Strings and GoStrings respectively
 }
 
 func printers() {
@@ -105,4 +109,17 @@ func scanners() {
 
 	fmt.Sscanf("Gold is sold for 10000 karat", "%s is sold for %g %s", &product, &price, &currency)
 	fmt.Printf("product: %s, price: %.1f, currency: %s\n", product, price, currency)
+}
+
+func fmt_appenders() {
+	/*
+		- Appenders basically, append the string to the provided byte slice and return a new byte slice
+		- Suffixes have their usal behaviour
+	*/
+	p := []byte{}
+	p = fmt.Append(p, "This ")
+	p = fmt.Appendf(p, "%s is ", "girl")
+	p = fmt.Appendln(p, "good at what she does!")
+
+	fmt.Printf("%s", p) // This girl is good ad what she does!
 }

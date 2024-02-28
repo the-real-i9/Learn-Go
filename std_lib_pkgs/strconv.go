@@ -12,7 +12,7 @@ func strconv_pkg() {
 	// formatters()
 	// parsers()
 	// quoters()
-	appenders()
+	str_conv_appenders()
 	// strconv_others()
 }
 
@@ -68,7 +68,7 @@ func quoters() {
 Appenders are like formatters and quoters, coupled with
 the feature of appending the result to an existing byte slice
 */
-func appenders() {
+func str_conv_appenders() {
 	love := []byte("love: ")
 	love = strconv.AppendQuoteRune(love, '❤')
 	love = strconv.AppendQuote(love, "❤ you")
