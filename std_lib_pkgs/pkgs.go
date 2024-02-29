@@ -11,5 +11,6 @@ func main() {
 	// index_pkg()
 	// slices_pkg()
 	// fmt_pkg()
-	log_pkg()
+	// log_pkg()
+	io_pkg()
 }
