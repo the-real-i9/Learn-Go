@@ -12,5 +12,6 @@ func main() {
 	// slices_pkg()
 	// fmt_pkg()
 	// log_pkg()
-	io_pkg()
+	// io_pkg()
+	io_fs_pkg()
 }
