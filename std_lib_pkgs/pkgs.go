@@ -15,5 +15,6 @@ func main() {
 	// io_pkg()
 	// io_fs_pkg()
 	// os_pkg()
-	filepath_pkg()
+	// filepath_pkg()
+	// bufio_pkg()
 }
