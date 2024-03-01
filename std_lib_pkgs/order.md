@@ -22,11 +22,12 @@
   - rand
   - bits
 ---
-- fmt
-- log
-- path
-- io
-- os
+- fmt ✅ 
+- log ✅
+- path ✅
+  - filepath ✅
+- io ✅
+- os ✅
 - flag
 - sync (adv.)
 - syscall (adv.)
@@ -40,13 +41,13 @@
   ---
   - ascii85
   - hex
-  - base64
+  - base64 ✅
   - base32
   - binary
   - asn1
   ---
   - gob
-- bufio
+- bufio ✅
 - unicode
 - text
   - scanner
