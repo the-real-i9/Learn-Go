@@ -13,5 +13,7 @@ func main() {
 	// fmt_pkg()
 	// log_pkg()
 	// io_pkg()
-	io_fs_pkg()
+	// io_fs_pkg()
+	// os_pkg()
+	filepath_pkg()
 }

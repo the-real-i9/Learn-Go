@@ -33,7 +33,7 @@ func io_fs_pkg() {
 
 	io.Discard.Write(bt)
 
-	// retrieve the names of all files matching the glob pattern in the file system
+	// retrieve the names of all direnctories and files  matching the glob pattern in the file system
 	matches, err := fs.Glob(os.DirFS("/home/i9/Code/Go"), "*/*")
 	if err != nil {
 		log.Fatal(err)
