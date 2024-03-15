@@ -13,7 +13,7 @@ func pipelines() {
 	pipel_3()
 }
 
-/* The first goroutine, "counter", generates the integers 0, 1, 2, ..., and sends them over a channel to the second goroutine, "squarer", which receives each value, multiply it by 2, and sends the result over another channel to the third goroutine, "printer", which receives the squared values and prints them. */
+/* The first goroutine, "counter", generates the integers 0, 1, 2, ..., and sends them over a channel to the second goroutine, "squarer", which receives each value, multiply it by 2, and sends the result over another channel to the main goroutine, "printer", which receives the squared values and prints them. */
 func pipel_1() {
 	naturals := make(chan int)
 	bitseq := make(chan int)

@@ -8,7 +8,7 @@ import (
 /*
 + A send operation on an ubuffered channel blocks the sending goroutine until another goroutine executes a corresponding receive on the same channel. If the receive operation was attempted first, the receiving goroutine blocks until another goroutine performs a send on the same channel.
 
-+ Communication over an ubuffered channel caused the sending and receiving goroutines to synchronize. Consequentely, they are sometimes called synchronous channels.
++ Communication over an ubuffered channel causes the sending and receiving goroutines to synchronize. Consequentely, they are sometimes called synchronous channels.
 
 + Sometimes we just want to use channels for synchronization purposes without needing their value. In such cases any simple and conventional value to represent content is used
 */

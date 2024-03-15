@@ -13,7 +13,7 @@ import (
 	- Like a switch statement, it has a number of cases and an optional `default`.
 	- Each case specifies a communication(a send or receive operation on some channel) and an associated block of statements.
 
-+ A `select` waits until a communication for some case is ready to proceed. It then performs that communication and executes the case's associated statements; the other commnunications do not happen. If multiple cases are ready, `select` picks one at random, which ensures that every channel has an equal change of beign selected.
++ A `select` waits until a communication for some case is ready to proceed. It then performs that communication and executes the case's associated statements; the other commnunications do not happen. If multiple cases are ready, `select` picks one at random, which ensures that every channel has an equal chance of being selected.
 
 + Sometimes we want to try to send or receive on a channel but avoid blocking if the channel is not ready, a "non-blocking" communication.
 			- A `select` may have a `default`, which specifies what to do when none the other communications can proceed immediately.

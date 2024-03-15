@@ -7,13 +7,13 @@ import "fmt"
 
 + Each channel is a conduit for values of a particular type, called the channel's element type.
 
-+ A channel is a referece type... and you know what that means...
++ A channel is a reference type... and you know what that means...
 
 + A channel has two principal operations, send and receive, collectively known as communications.
 	- a send statement transmits value (of the channel's type) from one goroutine, through the channel, to another goroutine executing a corresponding receive expression
 
 + Channels support a third operation, close, after which no more values must be sent on this channel; subsequent attempts to send will cause a panic.
-	- Receive operations on a closed channel yield the values that have been sent until no more values are left; any receive operations thereafter completes immediately and yield the zero value of the channel's element type.
+	- Receive operations on a closed channel yield the values that have been sent until no more values are left; any receive operations thereafter completes immediately and yields the zero value of the channel's element type.
 
 + Major types of channels
 	unbuff_chan = make(chan int)        // unbuffered channel
