@@ -2,11 +2,12 @@ package main
 
 func main() {
 	// goRoutines()
-	examples()
+	// examples()
 	// channels()
 	// unbuffChannels()
 	// pipelines()
 	// unidirectionalChan()
 	// buffChan()
 	// multiplexSelect()
+	Experimenting()
 }
